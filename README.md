@@ -7,7 +7,7 @@ Welcome to the MaCFP database!
 The central objective of the MaCFP working group is to target
 fundamental progress in fire science and to advance predictive fire
 modeling. The purpose of this database is to host high-quality
-experimental data for the purpose of validating physics-based fire
+experimental and benchmark simulation data for the purpose of validating physics-based fire
 models. The working group meets before the IAFSS conference currently
 held every three years.
 
@@ -25,72 +25,69 @@ held every three years.
             - [fireRadFoam ](#fireradfoam)
         - [Python](#python)
 
-<!-- markdown-toc end -->
 
 
 ## Introduction
 
 <XXXX A bit more infoXXX>
+To improve CFD simulations validation with high quality experimental data or "gold standard" simulation data is necessary. The present, flexible data base, that can be extended by community contributions, is designed to serve this need by collecting CFD benchmark cases, where high quality experimental data as well es "gold standard" simulation data are available.
 
+The goal is to provide the data in a form, that is sufficient to reproduce (with proper version of FDS and fireFoam installed) the simulation data. 
+
+The basic structure of a case folder is described in [Folder Overview](#folder-overview), basic filename conventions are described in [File Names](#file-names) and the basic field names are described in the section [Naming Conventions for Fields](#naming-conventions-for-fields).
+
+The basic structure and filename conventions provide a template, from which special cases may differ, with respect to their status in comprehensiveness, which evolves over time.
+
+Section [Benchmark Cases](#benchmark-cases) shows a list of available cases.
+
+Since this working group is focused on radiation modeling, the simulations are restricted on the radiation part The procedure is described in the [Methodology](#methodology) section.
+
+The folder [Scripts, Tools and Templates](#scripts-tools-and-templates) contains files, that do not fit in the previous structure.
 
 ## Folder Overview
-In general for the test cases both folder structures are prepared in a similar manner. There are mainly differences when for a certain case data or scripts are only provided for selected CFD tools (e.g. for the NIST pool fire there is up to now no FDS mapping).
 
 The General structure looks like:
-- 00_Documentation
-  - General Information about the case
-- 01_Experimental_Data
-  - Reference and description of available experimental data
-- 02_Simulation_Base
-  - This folder includes the initial "base" simulation setup of FDS for the FM Burner case and the OpenFOAM setup for the NIST Pool fire.
-- 03_Simulation_LBL_PMC
-  - This folder includes the benchmark data (downloadable via the provided scripts) based on the PMC-LBL solver.
-- 04_Computational_Results
-  - As for the gas phase subgroup, there the computational results of the participants are stored.
-  - This folder includes also two template folders
-    - One folder provides a template for the calculation with mapped
-      data for FDS and OpenFOAM; these data can be used for
-      benchmarking against the LBL-PMC data. The subfolders with the
-      suffix `_mapped_Snapshots` provide the scripts to download, run
-      and post-process radiation settings.
-    - The second folder provides guidance for post-processing the results of the new calculations with FDS and OpenFOAM.
-- 05_Utilities
-  - This folder might include additional scripts for handling certain cases individually.
+- Simulation Case
+  - 00_Documentation
+    - General Information about the case
+  - 01_Experimental_Data
+    - Reference and description of available experimental data
+  - 02_Simulation_Base
+    - This folder includes the initial "base" simulation setup of FDS and/or OpenFOAM  (FM Burner: FDS, NIST Pool Fire: OpenFOAM).
+  - 03_Simulation_LBL_PMC
+    - This folder includes the benchmark data (downloadable via the provided scripts) based on the PMC-LBL solver.
+  - 04_Computational_Results
+    - As for the gas phase subgroup, there the computational results of the participants are stored.
+    - This folder includes also two template folders
+      - One folder provides a template for the calculation with mapped
+        data for FDS and OpenFOAM; these data can be used for
+        benchmarking against the LBL-PMC data. The subfolders with the
+        suffix `_mapped_Snapshots` provide the scripts to download, run
+        and post-process radiation settings.
+      - The second folder provides guidance for post-processing the results of the new calculations with FDS and OpenFOAM.
+  - 05_Utilities
+    - This folder might include additional scripts for handling certain cases individually.
 
-## File names
-File names for scripts, folders and configurations files have often a
-prefix with a number. These number should help to guide through the
-usage of the available data and to run the actual simulation with the
-additional data available on github.
+## File Names
+In case file names and folders have a number prefix, possible actions (reading, execution of scripts) should be performed in the order of the number prefix.
 
-E.g. when looking at the already mentioned folder naming approach:
+E.g. the number prefixes in the file structure:
 - 00_Documentation
 - 01_Experimental_Data
 - 02_Simulation_Base
 - 03_Simulation_LBL_PMC
 - 04_Computational_Results
+mean, that you should first read the documentation "00", then go to experimental data "01" and so on.
 
-There the idea is that you would start with the folder with the prefix `00_` to start getting information about the case; the corresponding next folder to work on would be starting with `01_` and so on.
-
-Further, when going into `02_Simulation_Base/FDS_mapped_Snapshots` there are scripts with similar prefixes:
+In case subfolders contain scripts, they have to be executed in the order of the prefix, e.g. in `02_Simulation_Base/FDS_mapped_Snapshots` you find:
 - 00_download_files.sh
-- 01_extract_tar_files.sh
 - 02_adjust_copy_FDS_template.py
 - 03_run_FDS.py
-
-For working with the data files and setup one would start with the file starting with `00_` and going step by step to the next scripts.
+which means: first execute "00_download_files.sh" and so on. 
 
 The actual details are described within each folder.
 
-## Benchmark Cases
-
-Detailed description about the benchmark cases are provided in the READMEs of the corresponding subfolders.
-
-- NIST Pool Fires [NIST Pool Folder](/NIST_Pool_Fires/README.md)
-
-- FM Burner: [FM Burner Folder](/FM_Burner/README.md)
-
-## Naming conventions for fields
+## Naming Conventions for Fields
 
 ### Field Names
 
@@ -117,8 +114,54 @@ Detailed description about the benchmark cases are provided in the READMEs of th
 Comment: Pressure is not available in this list as it is not mapped and as it has minor impact
 on the final results (this was checked for time step 15).
 
-## Scripts, Tools and Templates
+## Benchmark Cases
 
+Detailed description about the benchmark cases are provided in the READMEs of the corresponding subfolders.
+
+- NIST Pool Fires [NIST Pool Folder](/NIST_Pool_Fires/README.md)
+
+- FM Burner: [FM Burner Folder](/FM_Burner/README.md)
+
+The folder structure of both test cases are prepared in a similar manner, but some scripts or simulation data are different (e.g. for the NIST pool fire there is up to now no FDS mapping).
+
+## Methodology
+
+- focus on radiation, therefore not hole system of field equations is solved, but a fds simulation is run for 200s () with time step size $\Delta t=$
+- In case of FDS only 
+- Diagram OF, Diagram FDS, Diagram LBL
+### Solver Terminology
+```mermaid
+flowchart TD
+subgraph " "
+  f("`OpenFOAM`") -- "` `" --> g("`LBL-PMC
+  (radiation only solver)`") 
+end
+subgraph " "
+  d("`FDS`") -- "`configuration`" --> e("(radiation only solver)")
+end
+subgraph " "
+  a("`OpenFOAM`") -- " " --> b("`fireFOAM`") -- " " --> c("`fireRadFOAM
+  (radiation only solver)`")
+    click c "/Utilities/OpenFOAM/fireRADFoam_MaCFP" "some desc when mouse hover"
+end
+```
+
+The whole procedure looks like: 
+
+```mermaid 
+flowchart LR
+subgraph " "
+  a("`FDS`") -- "`run simulation for 200 s`" --> b("`200 snapshots`") -- "`select snapshots`" --> c("`40 snapshots`") -- "`run radiation solver only`" -->d("`40 radiation solutions`")
+end 
+```
+### Snapshot Generation and Radiation Benchmark
+
+
+
+
+
+
+## Scripts, Tools and Templates
 
 ### OpenFOAM
 #### fireRadFoam 
