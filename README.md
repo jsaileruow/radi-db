@@ -118,7 +118,11 @@ Comment: Pressure is not available in this list as it is not mapped and as it ha
 on the final results (this was checked for time step 15).
 
 ## Scripts, Tools and Templates
-
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
 
 ### OpenFOAM
 #### fireRadFoam 
