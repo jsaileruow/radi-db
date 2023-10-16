@@ -171,8 +171,8 @@ The selection process is summarized in the following graph:
 ```mermaid 
 flowchart LR
 subgraph " "
-  a("`FDS
-  (fully coupled)`") -- "`run simulation for 200 s`" --> b("`200 snapshots`") -- "`select representative set`" --> c("`40 snapshots`")
+  a("FDS
+  (fully coupled)") -- "run simulation for 200 s" --> b("200 snapshots") -- "select representative set" --> c("40 snapshots")
 end 
 ```
 
@@ -187,28 +187,28 @@ The solvers origin and terminology is shown in the following diagrams.
 ```mermaid
 flowchart TD
 subgraph " "
-  d("`FDS
+  d("FDS
   (radiation only 
-  confguration)`") -- "` `" --> e("(radiation only solver)")
+  confguration)") -- " " --> e("(radiation only solver)")
 end
 subgraph " "
-  a("`OpenFOAM`") -- " " --> b("`fireFOAM`") -- " " --> c("`fireRADFoam_MaCFP
-  (radiation only solver)`")
+  a("OpenFOAM") -- " " --> b("fireFOAM") -- " " --> c("fireRADFoam_MaCFP
+  (radiation only solver)")
     click c "/Utilities/OpenFOAM/fireRADFoam_MaCFP" "some desc when mouse hover"
 end
 subgraph " "
-  f("`OpenFOAM`") -- "` `" --> g("`LBL-PMC
-(radiation only solver)`") 
+  f("OpenFOAM") -- " " --> g("LBL-PMC
+(radiation only solver)") 
 end
 ```
 The procedure that is documented in this git is shown in the diagram below.
 ```mermaid 
 flowchart TD
 subgraph " "
-  a("`40 snapshots`") -- "` `" --> b("`LBL-PMC (calculated solution is part of the repository)`") -- "` `" --> f("`comparison`")
-  a("`40 snapshots`") -- "` `" --> c("`fireRADFoam_MaCFP (radiation only)`") -- "` `" --> f("`comparison`")
-  a("`40 snapshots`") -- "` `" --> d("`FDS (radiation only)`") -- "` `" --> f("`comparison`")
-  a("`40 snapshots`") -- "` `" --> e("`your custom solver/configuration`") -- "` `" --> f("`comparison`") -- "` `" --> g("`postprocessing`")
+  a("40 snapshots") -- " " --> b("LBL-PMC (calculated solution is part of the repository)") -- " " --> f("comparison")
+  a("40 snapshots") -- "` `" --> c("fireRADFoam_MaCFP (radiation only)") -- " " --> f("comparison")
+  a("40 snapshots") -- "` `" --> d("FDS (radiation only)") -- " " --> f("comparison")
+  a("40 snapshots") -- "` `" --> e("your custom solver/configuration") -- " " --> f("comparison") -- " " --> g("postprocessing")
 end 
 ```
 After reading the documentation you should be able to download the LBL-PMC solutions, download, run and compile the custom fireRADFoam_MaCFP solver, run the FDS radiation only configuration, compare the results and upload your contribution. 
