@@ -8,6 +8,7 @@ The central objective of the MaCFP working group is to target
 fundamental progress in fire science and to advance predictive fire
 modeling. The purpose of this database is to host high-quality
 experimental and benchmark simulation data for the purpose of validating physics-based fire
+experimental and benchmark simulation data for the purpose of validating physics-based fire
 models. The working group meets before the IAFSS conference currently
 held every three years.
 
@@ -43,10 +44,43 @@ Section [Benchmark Cases](#benchmark-cases) shows a list of available cases.
 Since this working group is focused on radiation modeling, the simulations are restricted on the radiation part The procedure is described in the [Methodology](#methodology) section.
 
 The folder [Scripts, Tools and Templates](#scripts-tools-and-templates) contains files, that do not fit in the previous structure.
+To improve CFD simulations validation with high quality experimental data or "gold standard" simulation data is necessary. The present, flexible data base, that can be extended by community contributions, is designed to serve this need by collecting CFD benchmark cases, where high quality experimental data as well es "gold standard" simulation data are available.
+
+The goal is to provide the data in a form, that is sufficient to reproduce (with proper version of FDS and fireFoam installed) the simulation data. 
+
+The basic structure of a case folder is described in [Folder Overview](#folder-overview), basic filename conventions are described in [File Names](#file-names) and the basic field names are described in the section [Naming Conventions for Fields](#naming-conventions-for-fields).
+
+The basic structure and filename conventions provide a template, from which special cases may differ, with respect to their status in comprehensiveness, which evolves over time.
+
+Section [Benchmark Cases](#benchmark-cases) shows a list of available cases.
+
+Since this working group is focused on radiation modeling, the simulations are restricted on the radiation part The procedure is described in the [Methodology](#methodology) section.
+
+The folder [Scripts, Tools and Templates](#scripts-tools-and-templates) contains files, that do not fit in the previous structure.
 
 ## Folder Overview
 
 The General structure looks like:
+- Simulation Case
+  - 00_Documentation
+    - General Information about the case
+  - 01_Experimental_Data
+    - Reference and description of available experimental data
+  - 02_Simulation_Base
+    - This folder includes the initial "base" simulation setup of FDS and/or OpenFOAM  (FM Burner: FDS, NIST Pool Fire: OpenFOAM).
+  - 03_Simulation_LBL_PMC
+    - This folder includes the benchmark data (downloadable via the provided scripts) based on the PMC-LBL solver.
+  - 04_Computational_Results
+    - As for the gas phase subgroup, there the computational results of the participants are stored.
+    - This folder includes also two template folders
+      - One folder provides a template for the calculation with mapped
+        data for FDS and OpenFOAM; these data can be used for
+        benchmarking against the LBL-PMC data. The subfolders with the
+        suffix `_mapped_Snapshots` provide the scripts to download, run
+        and post-process radiation settings.
+      - The second folder provides guidance for post-processing the results of the new calculations with FDS and OpenFOAM.
+  - 05_Utilities
+    - This folder might include additional scripts for handling certain cases individually.
 - Simulation Case
   - 00_Documentation
     - General Information about the case
