@@ -1,8 +1,8 @@
 # radi-db
 
-Measurement and Computation of Radiative Heat Transfer Phenomena Database
+## Measurement and Computation of Radiative Heat Transfer Phenomena Database
 
-Welcome to the MaCFP database!
+**Welcome to the MaCFP database!**
 
 The central objective of the MaCFP working group is to target
 fundamental progress in fire science and to advance predictive fire
@@ -39,12 +39,11 @@ The basic structure of a case folder is described in [Folder Overview](#folder-o
 
 The basic structure and filename conventions provide a template, from which special cases may differ, with respect to their status in comprehensiveness, which evolves over time.
 
-Section [Benchmark Cases](#benchmark-cases) shows a list of available cases.
+The section [Benchmark Cases](#benchmark-cases) shows a list of available cases.
 
-Since this working group is focused on radiation modeling, the simulations are restricted on the radiation part The procedure is described in the [Methodology](#methodology) section.
+Since this working group is focused on radiation modeling, the simulations are restricted on the radiation part. The procedure is described in the [Methodology](#methodology) section.
 
 The folder [Scripts, Tools and Templates](#scripts-tools-and-templates) contains files, that do not fit in the previous structure.
-To improve CFD simulations validation with high quality experimental data or "gold standard" simulation data is necessary. The present, flexible data base, that can be extended by community contributions, is designed to serve this need by collecting CFD benchmark cases, where high quality experimental data as well es "gold standard" simulation data are available.
 
 The goal is to provide the data in a form, that is sufficient to reproduce (with proper version of FDS and fireFoam installed) the simulation data. 
 
@@ -54,7 +53,7 @@ The basic structure and filename conventions provide a template, from which spec
 
 Section [Benchmark Cases](#benchmark-cases) shows a list of available cases.
 
-Since this working group is focused on radiation modeling, the simulations are restricted on the radiation part The procedure is described in the [Methodology](#methodology) section.
+Since this working group is focused on radiation modeling, the simulations are restricted on the radiation part. The procedure is described in the [Methodology](#methodology) section.
 
 The folder [Scripts, Tools and Templates](#scripts-tools-and-templates) contains files, that do not fit in the previous structure.
 
@@ -81,29 +80,8 @@ The General structure looks like:
       - The second folder provides guidance for post-processing the results of the new calculations with FDS and OpenFOAM.
   - 05_Utilities
     - This folder might include additional scripts for handling certain cases individually.
-- Simulation Case
-  - 00_Documentation
-    - General Information about the case
-  - 01_Experimental_Data
-    - Reference and description of available experimental data
-  - 02_Simulation_Base
-    - This folder includes the initial "base" simulation setup of FDS and/or OpenFOAM  (FM Burner: FDS, NIST Pool Fire: OpenFOAM).
-  - 03_Simulation_LBL_PMC
-    - This folder includes the benchmark data (downloadable via the provided scripts) based on the PMC-LBL solver.
-  - 04_Computational_Results
-    - As for the gas phase subgroup, there the computational results of the participants are stored.
-    - This folder includes also two template folders
-      - One folder provides a template for the calculation with mapped
-        data for FDS and OpenFOAM; these data can be used for
-        benchmarking against the LBL-PMC data. The subfolders with the
-        suffix `_mapped_Snapshots` provide the scripts to download, run
-        and post-process radiation settings.
-      - The second folder provides guidance for post-processing the results of the new calculations with FDS and OpenFOAM.
-  - 05_Utilities
-    - This folder might include additional scripts for handling certain cases individually.
 
-## File Names
-In case file names and folders have a number prefix, possible actions (reading, execution of scripts) should be performed in the order of the number prefix.
+If case file names and folders have a number prefix, possible actions (reading, execution of scripts) should be performed in the order of the number prefix.
 
 E.g. the number prefixes in the file structure:
 - 00_Documentation
@@ -111,12 +89,13 @@ E.g. the number prefixes in the file structure:
 - 02_Simulation_Base
 - 03_Simulation_LBL_PMC
 - 04_Computational_Results
-mean, that you should first read the documentation "00", then go to experimental data "01" and so on.
+mean, that you should read the documentation "00" first, then go to experimental data "01" and so on.
 
 In case subfolders contain scripts, they have to be executed in the order of the prefix, e.g. in `02_Simulation_Base/FDS_mapped_Snapshots` you find:
 - 00_download_files.sh
 - 02_adjust_copy_FDS_template.py
 - 03_run_FDS.py
+
 which means: first execute "00_download_files.sh" and so on. 
 
 The actual details are described within each folder.
@@ -145,7 +124,7 @@ The actual details are described within each folder.
 | Density         | (warning: dimensionless) | rho                |                    |
 | Temperature     | (Kelvin)                 |                    |                    |
 
-Comment: Pressure is not available in this list as it is not mapped and as it has minor impact
+Comment: the pressure is not available in this list as it is not mapped and as it has minor impact
 on the final results (this was checked for time step 15).
 
 ## Benchmark Cases
@@ -156,7 +135,7 @@ Detailed description about the benchmark cases are provided in the READMEs of th
 
 - FM Burner: [FM Burner Folder](/FM_Burner/README.md)
 
-The folder structure of both test cases are prepared similarly, but some scripts or simulation data are different (e.g. for the NIST pool fire there is up to now no FDS mapping).
+The folder structure of both, test cases are prepared similarly, but some scripts or simulation data are different (e.g. for the NIST pool fire there is up to now no FDS mapping).
 
 ## Methodology
 In a fully coupled CFD simulation the local temperature field as well as the gas concentration fields are solutions of field equations, such as the energy equation, the species transport equations, the momentum equation and the radiative transfer equation.
