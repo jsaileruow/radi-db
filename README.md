@@ -135,7 +135,7 @@ Detailed description about the benchmark cases are provided in the READMEs of th
 
 - FM Burner: [FM Burner Folder](/FM_Burner/README.md)
 
-The folder structure of both, test cases are prepared similarly, but some scripts or simulation data are different (e.g. for the NIST pool fire there is up to now no FDS mapping).
+The folder structure of both test cases are prepared similarly, but some scripts or simulation data are different (e.g. for the NIST pool fire there is up to now no FDS mapping).
 
 ## Methodology
 In a fully coupled CFD simulation the local temperature field as well as the gas concentration fields are solutions of field equations, such as the energy equation, the species transport equations, the momentum equation and the radiative transfer equation.

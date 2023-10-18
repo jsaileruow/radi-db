@@ -1,10 +1,9 @@
 
 # General Information
 
-General overview about the folder structure is described in the main `README.md` file.
-
+General overview about the folder structure is described in the main `README.md` 
+<XXXX TODO: link XXX> file.
 <XXXX A bit more infoXXX>
-
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
